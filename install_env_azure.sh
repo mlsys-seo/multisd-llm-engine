@@ -1,0 +1,28 @@
+export TORCH_CUDA_ARCH_LIST="8.0"
+
+# TORCH_CUDA_ARCH_LIST="8.0" for A30, A100
+# TORCH_CUDA_ARCH_LIST="8.6" for A6000, A40
+# TORCH_CUDA_ARCH_LIST="9.0" for H100
+
+
+# python -m pip install --upgrade pip
+
+
+# Delete PyTorch and other packages for PyTorch
+pip uninstall -y torch torchdata torchtext torchvision torchaudio
+
+pip install torch==2.6.0 --index-url https://download.pytorch.org/whl/cu124
+
+cd /workspace/sdprofiler/SDProfiler
+pip install -e .
+
+cd /workspace
+
+wget https://github.com/flashinfer-ai/flashinfer/releases/download/v0.2.4/flashinfer_python-0.2.4+cu124torch2.6-cp38-abi3-linux_x86_64.whl
+TORCH_CUDA_ARCH_LIST="8.0" pip install flashinfer_python-0.2.4+cu124torch2.6-cp38-abi3-linux_x86_64.whl
+
+# Set the default directory to /workspace
+cd /workspace
+
+
+pip install --upgrade datasets ray soxr transformers==4.53.3 

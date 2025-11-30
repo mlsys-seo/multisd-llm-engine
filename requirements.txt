@@ -1,0 +1,11 @@
+transformers
+datasets
+huggingface-hub
+pandas
+ray
+numba
+autoawq
+optimum
+auto-gptq
+ninja
+scipy
